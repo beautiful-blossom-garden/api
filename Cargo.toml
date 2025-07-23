@@ -1,0 +1,16 @@
+[package]
+name = "api"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+axum = "0.8.4"
+chrono = "0.4.41"
+diesel = { version = "2.2.11", features = ["postgres", "uuid"] }
+diesel-async = { version = "0.6.1", features = ["postgres"] }
+dotenvy = "0.15.7"
+jsonwebtoken = "9.3.1"
+serde = { version = "1.0.219", features = ["derive"] }
+serde_derive = "1.0.219"
+tokio = { version = "1.46.1", features = [ "rt-multi-thread" ] }
+uuid = { version = "1.17.0", features = ["serde"] }

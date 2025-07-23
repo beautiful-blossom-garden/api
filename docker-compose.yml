@@ -1,0 +1,9 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: 'blossomgarden'
+      POSTGRES_PASSWORD: 'blossomgarden'
+      POSTGRES_DB: 'blossomgarden'
+    ports:
+      - 5432:5432

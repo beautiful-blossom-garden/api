@@ -1,3 +1,7 @@
+networks:
+  api-network:
+    driver: bridge
+
 services:
   db:
     image: postgres:17-alpine
@@ -7,3 +11,28 @@ services:
       POSTGRES_DB: 'blossomgarden'
     ports:
       - 5432:5432
+    networks:
+      - api-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "blossomgarden"]
+      interval: 2s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_URL: 'postgres://blossomgarden:blossomgarden@db:5432/blossomgarden'
+      JWT_SECRET: 'blossomgarden'
+      JWT_EXP: '2'
+      USERNAME: 'blossomgarden'
+      PASSWORD: 'blossomgarden'
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - api-network

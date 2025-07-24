@@ -1,0 +1,8 @@
+/target
+
+.gitignore
+docker-compose.yml
+Dockerfile
+flake.lock
+flake.nix
+LICENSE

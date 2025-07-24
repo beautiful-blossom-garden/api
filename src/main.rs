@@ -8,7 +8,7 @@ async fn main() {
     let app = Router::new().merge(v1_router());
 
     // run it
-    let listener = tokio::net::TcpListener::bind("127.0.0.1:3000")
+    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000")
         .await
         .unwrap();
     println!("listening on {}", listener.local_addr().unwrap());
